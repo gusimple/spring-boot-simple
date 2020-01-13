@@ -1,0 +1,10 @@
+server:
+  port: 8087
+  servlet:
+    context-path: /dev
+
+#开始日志颜色输出
+spring:
+  output:
+    ansi:
+      enabled: always

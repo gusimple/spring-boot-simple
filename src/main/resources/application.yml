@@ -1,7 +1,4 @@
-server:
-  port: 9090
-  servlet:
-    context-path: /gu
+spring:
+  profiles:
+    active: dev
 
-my.age: 22
-my.name: gu
