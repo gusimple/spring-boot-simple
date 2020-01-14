@@ -1,10 +1,27 @@
 server:
   port: 8087
-  servlet:
-    context-path: /dev
 
 #开始日志颜色输出
 spring:
   output:
     ansi:
       enabled: always
+#数据库设置
+    #spring.datasource.type
+    #更多细微的配置可以通过下列前缀进行调整
+    #spring.datasource.hikari
+    #spring.datasource.tomcat
+    #spring.datasource.dbcp2
+  datasource:
+    url: jdbc:mysql://47.94.211.229:3306/gusimpleDB?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=false
+    password: 123GUxixi,.
+    username: gusimple
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.gusimple.entity
+  #驼峰命名规范
+  configuration:
+    map-underscore-to-camel-case: true
+
+
+
