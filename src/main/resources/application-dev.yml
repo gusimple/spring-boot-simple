@@ -16,12 +16,51 @@ spring:
     url: jdbc:mysql://47.94.211.229:3306/gusimpleDB?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=false
     password: 123GUxixi,.
     username: gusimple
+  redis:
+    host: 47.94.211.229
+    #连接超时（毫秒）
+    timeout: 10000
+    #redis默认情况下是16个分片，这里默认是0
+    database: 0
+    lettuce:
+      pool:
+        #连接池最大连接数（使用负值表示没有限制） 默认 8
+        max-active: 8
+        #连接池最大阻塞等待时间（使用负值表示没有限制） 默认 -1
+        max-wait: -1
+        #连接池中的最大空闲连接 默认 8
+        max-idle: 8
+        #连接池中的最小空闲连接 默认 0
+        min-idle: 0
+    port: 29909
+    password: 123guxixi,.
+    #一般来说是不用配置的，Spring Cache 会根据依赖的包自行装配
+  cache:
+    type: redis
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.gusimple.entity
-  #驼峰命名规范
+#驼峰命名规范
   configuration:
     map-underscore-to-camel-case: true
+#mybatis日志需要做如下配置
+logging:
+  level:
+    com :
+      gusimple : debug
+# 主键自增回写方法,默认值MYSQL,详细说明请看文档
+mapper:
+  identity: MYSQL
+  mappers: tk.mybatis.mapper.common.BaseMapper
+  # 设置 insert 和 update 中，是否判断字符串类型!=''
+  not-empty: true
+  # 枚举按简单类型处理
+  enum-as-simple-type: true
 
-
-
+######### 分页插件 ##########
+pagehelper:
+  ##方言##
+  helper-dialect: mysql
+  reasonable: false
+  support-methods-arguments: true
+  params: count=countSql
